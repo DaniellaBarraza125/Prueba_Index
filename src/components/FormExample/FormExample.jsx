@@ -16,9 +16,9 @@ const FormExample = () => {
   return (
     <Center>
       <Box width="575px" height="741px">
-        <Box>
-          <h1>Formulario Ejemplo</h1>
-        </Box>
+        <Box width="411px">
+          <h1>Ejemplo formulario </h1>
+     
         <Formik
           initialValues={{ name: '', surname: '', email: '', phone: '' }}
           validationSchema={validationSchema}
@@ -33,7 +33,7 @@ const FormExample = () => {
                 <Field name="name">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.name && form.touched.name}>
-                      <FormLabel htmlFor="name">Name</FormLabel>
+                      <FormLabel htmlFor="name">Name d</FormLabel>
                       <Flex align="center" justifyContent="space-between" width="411px">
                         <Input {...field} id="name" borderRadius="4px" />
                         {form.errors.name && form.touched.name && (
@@ -105,6 +105,7 @@ const FormExample = () => {
             </Form>
           )}
         </Formik>
+        </Box>
       </Box>
     </Center>
   );

@@ -1,4 +1,3 @@
-import { WarningIcon } from "@chakra-ui/icons";
 import { extendTheme } from "@chakra-ui/react";
 
 const ChakraTheme = extendTheme({
@@ -7,8 +6,8 @@ const ChakraTheme = extendTheme({
         errorRed: "#FF0000",
     },
     fonts: {
-        body: "Roboto, sans-serif",
-        heading: "Roboto, sans-serif",
+        body: "Inter, sans-serif",
+        heading: "Inter, sans-serif",
     },
     styles: {
         global: {
@@ -25,7 +24,7 @@ const ChakraTheme = extendTheme({
         Input: {
             baseStyle: {
                 field: {
-                    width: "311px",
+                    width: "387px",
                     height: "59px",
                     borderRadius: "4px",
                     border: "1px solid",
@@ -40,13 +39,20 @@ const ChakraTheme = extendTheme({
         },
         FormLabel: {
             baseStyle: {
-                color: "#FFFFFF",
+                color: "black",
+                fontSize: "14px",
+                _disabled: {
+                    color: "gray.400", // Color del label cuando el input está deshabilitado
+                },
+                _invalid: {
+                    color: "errorRed", // Color del label cuando hay un error
+                },
             },
         },
         FormErrorMessage: {
             baseStyle: {
                 fontSize: "sm",
-                color: "errorRed",
+                color: "errorRed", // Color del mensaje de error
             },
         },
     },
