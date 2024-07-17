@@ -51,7 +51,6 @@ const FormExample = () => {
     setSubmitting(false);
     resetForm();
 
-    console.log('info:', { id: formId, ...values });
 
     setFormSubmitted(!formSubmitted);
   };
@@ -60,8 +59,8 @@ const FormExample = () => {
     <Container display="flex" flexDirection={{ base: 'column', md: 'row' }}>
       <Box justifyContent={'center'} width={{ base: '100%', md: '575px' }} marginBottom={{ base: '50px', md: '0' }}>
         <Center>
-          <Box width="100%">
-            <h1>Example Form</h1>
+          <Box width="411px">
+            <h1>Ejemplo formulario</h1>
             <Formik
               initialValues={{ name: '', lastname: '', email: '', phone: '', message: '' }}
               validationSchema={validationSchema}

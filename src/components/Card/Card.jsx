@@ -10,7 +10,6 @@ const Card = ({ form }) => {
 
   const handleDelete = () => {
     dispatch(deleteCard(form.id));
-    console.log(`Card ID: ${form.id} deleted`);
     onClose();
   };
 
