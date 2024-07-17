@@ -28,12 +28,12 @@ const Home = () => {
                         <Box className="prueba"  padding="10px"  >
                             <VStack spacing={4} alignItems="flex-start" justifyContent={'center'}>
                                 
-                                    <Button width="15vw" colorScheme="blue"><Link to="/form">
+                                    <Button width={{base:"45vw", md:"15vw"}} colorScheme="blue"><Link to="/form">
                                         Ir a formulario
                                 </Link>
                                     </Button>
                                 <Link to="/cards">
-                                    <Button width="15vw" colorScheme="blue">
+                                    <Button width={{base:"45vw", md:"15vw"}} colorScheme="blue">
                                         Ir a Cards
                                     </Button>
                                 </Link>
