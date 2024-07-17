@@ -12,17 +12,17 @@ import {
   Flex,
   Stack,
   FormHelperText,
-  Container
+  Container,
+  Center
 } from '@chakra-ui/react';
 import { WarningIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 import { getForms } from '../../features/form/formSlice';
-import Card from '../Card/Card'; 
 import Cards from '../Cards/Cards';
 
 const validationSchema = Yup.object({
-  firstName: Yup.string().required('First Name is required'),
-  lastName: Yup.string().required('Last Name is required'),
+  name: Yup.string().required('Name is required'),
+  lastname: Yup.string().required('Lastname is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
   phone: Yup.string()
     .matches(/^[0-9]+$/, 'Must be only digits')
@@ -39,6 +39,7 @@ const FormExample = () => {
   }, [dispatch]);
 
   const [formData, setFormData] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(false); 
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const formId = new Date().getTime().toString();
@@ -50,51 +51,54 @@ const FormExample = () => {
     resetForm();
     
     console.log('info:', { id: formId, ...values });
+
+    setFormSubmitted(!formSubmitted);
   };
 
   return (
-    <Container display="flex">
-      <Box width="575px" height="741px">
+    <Container display="flex" width="100%" >
+      <Box width="575px" height="741px" marginTop="15%" >
+      <Center alignItems="flex-start">
         <Box width="411px">
           <h1>Example Form</h1>
           <Formik
-            initialValues={{ firstName: '', lastName: '', email: '', phone: '', message: '' }}
+            initialValues={{ name: '', lastname: '', email: '', phone: '', message: '' }}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
               <Form>
                 <Stack spacing={4}>
-                  <Field name="firstName">
+                  <Field name="name">
                     {({ field, form }) => (
-                      <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
-                        <FormLabel htmlFor="firstName">First Name</FormLabel>
+                      <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormLabel htmlFor="name">Name</FormLabel>
                         <Flex align="center" justifyContent="space-between">
-                          <Input {...field} id="firstName" borderRadius="4px" />
-                          {form.errors.firstName && form.touched.firstName && (
-                            <Tooltip label={form.errors.firstName} placement="right-end" bg="red.500">
+                          <Input {...field} id="name" borderRadius="4px" />
+                          {form.errors.name && form.touched.name && (
+                            <Tooltip label={form.errors.name} placement="right-end" bg="red.500">
                               <WarningIcon color="red.500" boxSize={5} ml={2} />
                             </Tooltip>
                           )}
                         </Flex>
-                        <FormErrorMessage fontSize="sm">{form.errors.firstName}</FormErrorMessage>
+                        <FormErrorMessage fontSize="sm">{form.errors.name}</FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
 
-                  <Field name="lastName">
+                  <Field name="lastname">
                     {({ field, form }) => (
-                      <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
-                        <FormLabel htmlFor="lastName">Last Name</FormLabel>
+                      <FormControl isInvalid={form.errors.lastname && form.touched.lastname}>
+                        <FormLabel htmlFor="lastname">Lastname</FormLabel>
                         <Flex align="center" justifyContent="space-between">
-                          <Input {...field} id="lastName" borderRadius="4px" />
-                          {form.errors.lastName && form.touched.lastName && (
-                            <Tooltip label={form.errors.lastName} placement="right-end" bg="red.500">
+                          <Input {...field} id="lastname" borderRadius="4px" />
+                          {form.errors.lastname && form.touched.lastname && (
+                            <Tooltip label={form.errors.lastname} placement="right-end" bg="red.500">
                               <WarningIcon color="red.500" boxSize={5} ml={2} />
                             </Tooltip>
                           )}
                         </Flex>
-                        <FormErrorMessage fontSize="sm">{form.errors.lastName}</FormErrorMessage>
+                        <FormErrorMessage fontSize="sm">{form.errors.lastname}</FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
@@ -159,11 +163,12 @@ const FormExample = () => {
             )}
           </Formik>
         </Box>
+      <Box justifyContent="center" width="575px" p="20px" >
+          <Cards formSubmitted={formSubmitted} />
+      </Box>
+      </Center>
       </Box>
 
-      <Box justifyContent="center" width="575px" p="20px">
-         <Cards />
-      </Box>
     </Container>
   );
 };
