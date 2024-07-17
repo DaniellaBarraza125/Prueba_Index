@@ -40,6 +40,7 @@ const FormExample = () => {
 
   const [formData, setFormData] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [setInvisible, setSetInvisible] = useState(true);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const formId = new Date().getTime().toString();
@@ -167,7 +168,7 @@ const FormExample = () => {
       </Box>
 
       <Box flex="1" justifyContent={'center'} marginLeft={{ md: '30px' }}>
-        <Cards formSubmitted={formSubmitted} />
+        <Cards formSubmitted={formSubmitted} setInvisible={setInvisible} />
       </Box>
     </Container>
   );

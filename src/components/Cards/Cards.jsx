@@ -4,16 +4,26 @@ import Card from '../Card/Card';
 import { Box, Center, Text } from '@chakra-ui/react';
 import { getForms } from '../../features/form/formSlice';
 
-const Cards = ({ formSubmitted }) => {
+const Cards = ({ formSubmitted, setInvisible }) => {
     const forms = useSelector((state) => state.form.forms);
     const dispatch = useDispatch();
-  
+    
     useEffect(() => {
-      dispatch(getForms());
+        dispatch(getForms());
     }, [dispatch, formSubmitted]);
 
-    console.log("forms", Array.isArray(forms), forms);
-    if (forms.length <= 0) { return null; }
+
+    if (forms.length <= 0) { 
+        return (
+            <Center marginTop="10vhx">
+                {!setInvisible && (
+                    <Text fontSize="xl" fontWeight="bold" mb={4}>
+                        No forms submitted currently
+                    </Text>
+                )}
+            </Center>
+        );
+    }
 
     return (
         <Center>
