@@ -1,18 +1,23 @@
 const getForms = () => {
-    let forms = JSON.parse(localStorage.getItem("Forms"));
-
-    // Si forms no es un array, lo inicializamos como un array vacío
+    const forms = JSON.parse(localStorage.getItem("Forms")) || [];
     if (!Array.isArray(forms)) {
-        forms = [];
-        localStorage.setItem("Forms", JSON.stringify(forms)); // Guardamos el array vacío en localStorage
+        console.error("Forms retrieved from localStorage is not an array");
+        return [];
     }
-
-    console.log("Forms retrieved from localStorage:", forms);
     return forms;
+};
+const deleteCard = (id) => {
+    const forms = JSON.parse(localStorage.getItem("Forms")) || [];
+
+    const updatedForms = forms.filter((form) => form.id !== id);
+    localStorage.setItem("Forms", JSON.stringify(updatedForms));
+
+    return updatedForms;
 };
 
 const formService = {
     getForms,
+    deleteCard,
 };
 
 export default formService;
