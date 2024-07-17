@@ -10,6 +10,7 @@ const validationSchema = Yup.object({
   surname: Yup.string().required('Surname is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
   phone: Yup.string().required('Phone number is required'),
+  message: Yup.string().required('Message is required'),
 });
 
 const FormExample = () => {
@@ -94,6 +95,22 @@ const FormExample = () => {
                         )}
                       </Flex>
                       <FormErrorMessage fontSize="sm">{form.errors.phone}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+                <Field name="message">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.phone && form.touched.phone}>
+                      <FormLabel htmlFor="phone">Message</FormLabel>
+                      <Flex align="center" justifyContent="space-between" width="411px">
+                        <Input {...field} id="message" borderRadius="4px" />
+                        {form.errors.message && form.touched.message && (
+                          <Tooltip label={form.errors.message} placement="right-end" bg="red.500">
+                            <WarningIcon color="red.500" boxSize={5} ml={2} />
+                          </Tooltip>
+                        )}
+                      </Flex>
+                      <FormErrorMessage fontSize="sm">{form.errors.message}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
