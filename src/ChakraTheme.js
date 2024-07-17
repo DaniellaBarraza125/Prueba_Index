@@ -20,6 +20,13 @@ const ChakraTheme = extendTheme({
             h1: {
                 fontSize: "46px",
             },
+            a: {
+                color: "white",
+                textDecoration: "none",
+                _hover: {
+                    borderBottom: "2px solid white",
+                },
+            },
         },
     },
     components: {

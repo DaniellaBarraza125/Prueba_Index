@@ -13,21 +13,21 @@ const Cards = ({ formSubmitted }) => {
     }, [dispatch, formSubmitted]);
 
     console.log("forms", Array.isArray(forms), forms);
+    if (forms.length <= 0) { return null; }
 
     return (
-        <Box bg="gray.100" p={4} w="411px" borderRadius="md" boxShadow="md">
-            <Center>
-                <Text fontSize="xl" fontWeight="bold" mb={4}>
-                    Información recibida
+        <Center>
+            <Box bg="gray.100" p={4} width={{ base: '100%', md: '411px' }} borderRadius="md" boxShadow="md" marginTop="5%">
+                <Text fontSize="xl" fontWeight="bold" mb={4} textAlign="center">
+                    Information received
                 </Text>
-            </Center>
-            <Box display={'flex'} flexDirection={'column-reverse'}>
-
-            {forms.map((form, index) => (
-                <Card key={index} form={form} />
-            ))}
+                <Box display="flex" flexDirection="column">
+                    {forms.map((form, index) => (
+                        <Card key={index} form={form} />
+                    ))}
+                </Box>
             </Box>
-        </Box>
+        </Center>
     );
 };
 

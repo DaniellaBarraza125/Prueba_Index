@@ -1,18 +1,21 @@
-import React from 'react';
-import { Box, Flex, IconButton, Text } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box, Flex, IconButton, Text, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Center } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 import { deleteCard } from '../../features/form/formSlice';
 
 const Card = ({ form }) => {
-  if (!form) {
-    return null;
-  }
-const dispatch = useDispatch();
-  const handleClick = (e) => {
-    e.preventDefault();
+  const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleDelete = () => {
     dispatch(deleteCard(form.id));
-    console.log(`Card ID: ${form.id}`);
+    console.log(`Card ID: ${form.id} deleted`);
+    onClose();
+  };
+
+  const toggleConfirmation = () => {
+    onOpen();
   };
 
   return (
@@ -26,8 +29,7 @@ const dispatch = useDispatch();
             variant="ghost"
             aria-label="Close"
             _hover={{ bg: 'white' }}
-            onClick={handleClick}
-            id={form.id} 
+            onClick={toggleConfirmation}
           />
         </Flex>
         <Box mt={1}>
@@ -42,6 +44,24 @@ const dispatch = useDispatch();
         <Box mt={1}>
           <Text><strong>Message:</strong> {form.message}</Text>
         </Box>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalBody>
+              <Center>
+                <Text>Are you sure you want to delete this card?</Text>
+              </Center>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" mr={3} onClick={handleDelete}>
+                Yes
+              </Button>
+              <Button variant="ghost" onClick={onClose}>
+                No
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Box>
     </Box>
   );
