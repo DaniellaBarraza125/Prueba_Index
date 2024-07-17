@@ -1,4 +1,3 @@
-import { WarningIcon } from "@chakra-ui/icons";
 import { extendTheme } from "@chakra-ui/react";
 
 const ChakraTheme = extendTheme({
@@ -23,9 +22,9 @@ const ChakraTheme = extendTheme({
             a: {
                 color: "white",
                 textDecoration: "none",
-                _hover: {
-                    borderBottom: "2px solid white",
-                },
+            },
+            "a.info": {
+                color: "black",
             },
         },
     },

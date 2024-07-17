@@ -31,6 +31,11 @@ const Header = () => {
         />
 
         <MenuList bg="black">
+            <Link to="/">
+          <MenuItem bg="black">
+              Home
+          </MenuItem>
+            </Link>
             <Link to="/form">
           <MenuItem bg="black">
               Form
