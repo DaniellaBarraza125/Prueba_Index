@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <Box display="flex" alignItems="center"  height="10vh" bg={'black'} px={4} justifyContent="flex-end">
-     
+    
       <Box display={{ base: 'none', md: 'flex' }} alignItems="center" >
       <Box padding={"10px"}>
             <Link to="/">Home</Link>

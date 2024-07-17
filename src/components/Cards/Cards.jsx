@@ -15,7 +15,7 @@ const Cards = ({ formSubmitted, setInvisible }) => {
 
     if (forms.length <= 0) { 
         return (
-            <Center marginTop="10vhx">
+            <Center marginTop="10vh">
                 {!setInvisible && (
                     <Text fontSize="xl" fontWeight="bold" mb={4}>
                         No forms submitted currently
